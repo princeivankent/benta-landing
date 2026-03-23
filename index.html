@@ -356,6 +356,84 @@
   }
   footer strong { color: rgba(255,255,255,0.8); }
 
+  /* MOBILE SECTION */
+  .mobile-section {
+    padding: 96px 48px;
+    background: linear-gradient(160deg, #F0EEFF 0%, #FFFFFF 50%, #ECFDF5 100%);
+    position: relative; overflow: hidden;
+  }
+  .mobile-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(91,79,232,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mobile-inner { max-width: 1160px; margin: 0 auto; }
+  .mobile-header { text-align: center; margin-bottom: 64px; }
+  .mobile-header .section-sub { margin: 0 auto; }
+  .mobile-phones {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 28px; margin-bottom: 48px;
+  }
+  .phone-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+    flex: 1; max-width: 240px;
+    transition: transform 0.3s ease;
+  }
+  .phone-wrap:hover { transform: translateY(-8px); }
+  .phone-wrap.phone-center { max-width: 268px; }
+  .phone-wrap.phone-side { transform: translateY(24px); }
+  .phone-wrap.phone-side:hover { transform: translateY(16px); }
+  .phone-frame {
+    position: relative; width: 100%;
+    background: #1A1927;
+    border-radius: 36px;
+    padding: 12px 10px;
+    box-shadow:
+      0 40px 100px rgba(15,14,26,0.22),
+      0 0 0 1px rgba(255,255,255,0.08) inset,
+      0 2px 4px rgba(255,255,255,0.06) inset;
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 24px;
+    background: #1A1927;
+    border-radius: 0 0 16px 16px;
+    z-index: 2;
+  }
+  .phone-frame::after {
+    content: '';
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 10px;
+    background: #2D2B40;
+    border-radius: 50%;
+    z-index: 3;
+  }
+  .phone-frame img {
+    width: 100%; border-radius: 26px; display: block;
+  }
+  .phone-label { text-align: center; }
+  .phone-label strong {
+    display: block;
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .phone-label span {
+    font-size: 13px; color: var(--text-muted); line-height: 1.5;
+  }
+  .mobile-cta { text-align: center; margin-top: 16px; }
+  .mobile-cta p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
+  @media (max-width: 760px) {
+    .mobile-phones { flex-direction: column; align-items: center; gap: 40px; }
+    .phone-wrap, .phone-wrap.phone-center, .phone-wrap.phone-side { max-width: 260px; transform: none; }
+    .phone-wrap.phone-side:hover, .phone-wrap:hover { transform: translateY(-6px); }
+  }
+  @media (max-width: 580px) {
+    .mobile-section { padding: 72px 24px; }
+  }
+
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(28px); }
@@ -603,6 +681,54 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- MOBILE SECTION -->
+<section class="mobile-section">
+  <div class="mobile-inner">
+    <div class="mobile-header">
+      <div class="section-label">Mobile-Ready</div>
+      <h2 class="section-title">Your store, always in your pocket</h2>
+      <p class="section-sub">No app download needed. Full POS, inventory, and reports — right from your phone browser, anywhere you are.</p>
+    </div>
+
+    <div class="mobile-phones">
+      <div class="phone-wrap phone-side">
+        <div class="phone-frame">
+          <img src="images/mobile-dashboard.jpg" alt="Benta dashboard on mobile showing today's sales and weekly chart">
+        </div>
+        <div class="phone-label">
+          <strong>Dashboard</strong>
+          <span>Sales overview & top products at a glance</span>
+        </div>
+      </div>
+
+      <div class="phone-wrap phone-center">
+        <div class="phone-frame">
+          <img src="images/mobile-pos-checkout.jpg" alt="Benta POS checkout on mobile with GCash, Maya, and Cash payment options">
+        </div>
+        <div class="phone-label">
+          <strong>Point of Sale</strong>
+          <span>Ring up sales fast — Cash, GCash, Maya, Card</span>
+        </div>
+      </div>
+
+      <div class="phone-wrap phone-side">
+        <div class="phone-frame">
+          <img src="images/mobile-sales-report.jpg" alt="Benta monthly sales report on mobile">
+        </div>
+        <div class="phone-label">
+          <strong>Sales Reports</strong>
+          <span>Monthly analytics with net sales & VAT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-cta">
+      <p>Works on any phone browser — no install required.</p>
+      <a href="https://app.bentaph.com" class="btn-primary" rel="noopener noreferrer">Try It Free on Your Phone →</a>
+    </div>
   </div>
 </section>
 

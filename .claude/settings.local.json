@@ -4,7 +4,13 @@
       "Bash(node:*)",
       "Bash(python extract_images.py)",
       "Bash(sed -n '440,450p' \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\index.html\")",
-      "Bash(sed -n '470,480p' \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\index.html\")"
+      "Bash(sed -n '470,480p' \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\index.html\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\Dashboard.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-dashboard.jpg\")",
+      "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\POS - Checkout.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-pos-checkout.jpg\")",
+      "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\Sales Report.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-sales-report.jpg\")"
     ]
   }
 }
