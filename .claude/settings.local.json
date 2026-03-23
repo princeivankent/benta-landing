@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(python extract_images.py)",
+      "Bash(sed -n '440,450p' \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\index.html\")",
+      "Bash(sed -n '470,480p' \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\index.html\")"
     ]
   }
 }
