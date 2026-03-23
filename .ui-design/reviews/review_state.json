@@ -1,0 +1,16 @@
+{
+  "review_id": "index_html_20260324_visual",
+  "target": "index.html",
+  "focus_areas": ["visual"],
+  "context": "SaaS landing page — marketing/content consumption",
+  "platform": "responsive",
+  "status": "complete",
+  "started_at": "2026-03-24",
+  "issues_found": 12,
+  "severity_counts": {
+    "critical": 1,
+    "major": 4,
+    "minor": 5,
+    "suggestion": 2
+  }
+}

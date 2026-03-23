@@ -50,6 +50,15 @@
     --surface: #F8F7FF;
     --white: #FFFFFF;
     --border: #E8E6F5;
+  --space-xs: 16px;
+  --space-sm: 24px;
+  --space-md: 48px;
+  --space-lg: 96px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 100px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -175,7 +184,7 @@
 
   /* SECTION */
   .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
     text-transform: uppercase; color: var(--brand); margin-bottom: 10px;
   }
   .section-title {
@@ -195,7 +204,7 @@
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
   }
   @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 580px) { .features-grid { grid-template-columns: 1fr; } nav { padding: 16px 20px; } .nav-links { display: none; } }
+  @media (max-width: 580px) { .features-grid { grid-template-columns: 1fr; } nav { padding: 16px 20px; } .nav-links a:not(.nav-cta) { display: none; } }
   .feature-card {
     background: white; border-radius: 16px; padding: 32px;
     border: 1px solid var(--border);
@@ -212,6 +221,10 @@
     margin-bottom: 10px;
   }
   .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+  .icon-indigo { background: #EEF2FF; }
+  .icon-green { background: #F0FDF4; }
+  .icon-amber { background: #FFFBEB; }
+  .icon-rose { background: #FFF1F2; }
 
   /* SHOWCASE */
   .showcase-section { padding: 96px 48px; }
@@ -221,10 +234,10 @@
     gap: 80px; align-items: center; margin-bottom: 112px;
   }
   .showcase-row:last-child { margin-bottom: 0; }
-  .showcase-row.reverse { direction: rtl; }
-  .showcase-row.reverse > * { direction: ltr; }
+  .showcase-row.reverse .showcase-img { order: -1; }
   @media (max-width: 800px) {
-    .showcase-row, .showcase-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 40px; margin-bottom: 72px; }
+    .showcase-row, .showcase-row.reverse { grid-template-columns: 1fr; gap: 40px; margin-bottom: 72px; }
+    .showcase-row.reverse .showcase-img { order: 0; }
   }
   .showcase-text h2 {
     font-family: 'Sora', sans-serif; font-weight: 800;
@@ -268,7 +281,8 @@
   .pricing-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
   }
-  @media (max-width: 800px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+  @media (max-width: 800px) and (min-width: 600px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
   .plan-card {
     background: white; border-radius: 20px; padding: 36px 32px;
     border: 2px solid var(--border); position: relative;
@@ -432,6 +446,9 @@
   }
   @media (max-width: 580px) {
     .mobile-section { padding: 72px 24px; }
+    .hero { padding: 120px 24px 64px; }
+    .trust-bar, .included-bar { padding: 18px 20px; gap: 16px; }
+    .showcase-section { padding: 72px 24px; }
   }
 
   /* ANIMATIONS */
@@ -445,6 +462,46 @@
   .hero-actions { animation: fadeUp 0.5s ease 0.3s both; }
   .hero-note { animation: fadeUp 0.5s ease 0.35s both; }
   .hero-screenshot { animation: fadeUp 0.7s ease 0.45s both; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible,
+  .reveal-left.visible,
+  .reveal-right.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger > *:nth-child(2) { transition-delay: 0.07s; }
+  .reveal-stagger > *:nth-child(3) { transition-delay: 0.14s; }
+  .reveal-stagger > *:nth-child(4) { transition-delay: 0.21s; }
+  .reveal-stagger > *:nth-child(5) { transition-delay: 0.28s; }
+  .reveal-stagger > *:nth-child(6) { transition-delay: 0.35s; }
+  /* Restore fast hover transitions once reveal is done */
+  .feature-card.reveal.visible { transition: transform 0.2s, box-shadow 0.2s; }
+  .plan-card.reveal.visible { transition: transform 0.2s, box-shadow 0.2s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right {
+      opacity: 1; transform: none; transition: none;
+    }
+  }
 </style>
 
 <script type="application/ld+json">
@@ -487,7 +544,7 @@
         "Utang (Credit) Tracking",
         "Sales Reports",
         "Multi-Store Support",
-        "Thermal Printer Support"
+        "Supplier Management"
       ],
       "screenshot": "https://bentaph.com/og-image.png",
       "inLanguage": "en-PH"
@@ -558,52 +615,52 @@
 </section>
 
 <!-- TRUST BAR -->
-<div class="trust-bar">
-  <span>🏪 <strong>Mini-Grocery</strong> Stores</span>
-  <span>🍞 <strong>Bakeshop</strong> & Pastry</span>
-  <span>🔧 <strong>Motorshop</strong> & Hardware</span>
+<div class="trust-bar reveal">
+  <span>🛒 <strong>Grocery</strong> Stores</span>
+  <span>💊 <strong>Pharmacy</strong> & Botika</span>
+  <span>🍞 <strong>Bakery</strong> & Panaderya</span>
+  <span>🔧 <strong>Hardware</strong> Stores</span>
   <span>🏬 <strong>Multi-Branch</strong> Businesses</span>
-  <span>🛒 <strong>Sari-sari</strong> Stores</span>
 </div>
 
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="features-inner">
-    <div class="features-header">
+    <div class="features-header reveal">
       <div class="section-label">Everything You Need</div>
       <h2 class="section-title">More than a POS — a complete store management system</h2>
       <p class="section-sub">From ringing up sales to tracking inventory and managing customer credit, it's all here.</p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#EEF2FF">🖥️</div>
+    <div class="features-grid reveal-stagger">
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-indigo">🖥️</div>
         <h3>Point of Sale</h3>
         <p>Ring up sales in seconds. Supports barcode scanning and 6 payment methods: Cash, GCash, Maya, Card, Credit, and Partial payment — with reference number tracking for GCash and Maya e-wallet payments.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#F0FDF4">📦</div>
-        <h3>FIFO Inventory</h3>
-        <p>Oldest stock is automatically used first. No wasted products, accurate cost tracking on every sale.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#FFFBEB">📒</div>
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-amber">📒</div>
         <h3>Utang (Credit) Tracking</h3>
         <p>Set credit limits per customer. Every credit sale is recorded instantly — no more missed or forgotten balances.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#F0FDF4">📊</div>
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-green">📦</div>
+        <h3>FIFO Inventory</h3>
+        <p>Oldest stock is automatically used first. No wasted products, accurate cost tracking on every sale.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-indigo">📦</div>
+        <h3>Supplier Management</h3>
+        <p>Track your suppliers and purchase orders in one place. Know who you buy from and keep your shelves stocked.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-green">📊</div>
         <h3>Sales Reports</h3>
         <p>View sales by day, month, or any date range. VAT breakdown included. Negosyo and Kadena plans can export to CSV for BIR records.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#FFF1F2">🏪</div>
+      <div class="feature-card reveal">
+        <div class="feature-icon icon-rose">🏪</div>
         <h3>Multi-Store Support</h3>
         <p>Running multiple branches? One account covers all of them. Switch between stores instantly from any screen.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:#EEF2FF">🖨️</div>
-        <h3>Thermal Printer</h3>
-        <p>Works with standard thermal POS printers. Print receipts automatically after every transaction.</p>
       </div>
     </div>
   </div>
@@ -614,7 +671,7 @@
   <div class="showcase">
 
     <div class="showcase-row">
-      <div class="showcase-text">
+      <div class="showcase-text reveal-left">
         <div class="section-label">Point of Sale</div>
         <h2>Faster checkout, fewer errors</h2>
         <p>Click a product, choose how the customer pays, done. The built-in numpad handles cash change automatically — no mental math needed.</p>
@@ -625,13 +682,13 @@
           <li>BIR-compliant receipts — print or PDF</li>
         </ul>
       </div>
-      <div class="showcase-img">
-        <img src="images/img-3.png" alt="Benta fast POS checkout screen for retail sales in the Philippines">
+      <div class="showcase-img reveal-right">
+        <img src="images/img-3.png" alt="Benta fast POS checkout screen for retail sales in the Philippines" loading="lazy">
       </div>
     </div>
 
     <div class="showcase-row reverse">
-      <div class="showcase-text">
+      <div class="showcase-text reveal-right">
         <div class="section-label">Customer Credit</div>
         <h2>Track every utang — automatically</h2>
         <p>Assign a credit limit to each customer. When they buy on credit, it's recorded right away. You'll always know exactly how much they owe.</p>
@@ -642,13 +699,13 @@
           <li>Complete transaction history per customer</li>
         </ul>
       </div>
-      <div class="showcase-img">
-        <img src="images/img-4.png" alt="Benta utang (customer credit) tracking screen for Philippine retail stores">
+      <div class="showcase-img reveal-left">
+        <img src="images/img-4.png" alt="Benta utang (customer credit) tracking screen for Philippine retail stores" loading="lazy">
       </div>
     </div>
 
     <div class="showcase-row">
-      <div class="showcase-text">
+      <div class="showcase-text reveal-left">
         <div class="section-label">Inventory Management</div>
         <h2>Always know what you have in stock</h2>
         <p>See the cost value and retail value of every product at a glance. Low stock alerts warn you before you run out. FIFO ensures your costing stays accurate.</p>
@@ -659,13 +716,13 @@
           <li>Expiry date tracking for perishable goods</li>
         </ul>
       </div>
-      <div class="showcase-img">
-        <img src="images/img-5.png" alt="Benta FIFO inventory management screen showing stock levels and alerts">
+      <div class="showcase-img reveal-right">
+        <img src="images/img-5.png" alt="Benta FIFO inventory management screen showing stock levels and alerts" loading="lazy">
       </div>
     </div>
 
     <div class="showcase-row reverse">
-      <div class="showcase-text">
+      <div class="showcase-text reveal-right">
         <div class="section-label">Reports & Analytics</div>
         <h2>Understand your business with real numbers</h2>
         <p>Sales reports by day, month, or custom date range show you gross profit, margin, and tax collected — all in one screen. No spreadsheets, no guessing.</p>
@@ -676,8 +733,8 @@
           <li>CSV export for bookkeeping or BIR filing (Negosyo &amp; Kadena)</li>
         </ul>
       </div>
-      <div class="showcase-img">
-        <img src="images/img-6.png" alt="Benta sales reports and business analytics screen for retail store owners">
+      <div class="showcase-img reveal-left">
+        <img src="images/img-6.png" alt="Benta sales reports and business analytics screen for retail store owners" loading="lazy">
       </div>
     </div>
 
@@ -687,16 +744,16 @@
 <!-- MOBILE SECTION -->
 <section class="mobile-section">
   <div class="mobile-inner">
-    <div class="mobile-header">
+    <div class="mobile-header reveal">
       <div class="section-label">Mobile-Ready</div>
       <h2 class="section-title">Your store, always in your pocket</h2>
       <p class="section-sub">No app download needed. Full POS, inventory, and reports — right from your phone browser, anywhere you are.</p>
     </div>
 
-    <div class="mobile-phones">
-      <div class="phone-wrap phone-side">
+    <div class="mobile-phones reveal-stagger">
+      <div class="phone-wrap phone-side reveal">
         <div class="phone-frame">
-          <img src="images/mobile-dashboard.jpg" alt="Benta dashboard on mobile showing today's sales and weekly chart">
+          <img src="images/mobile-dashboard.jpg" alt="Benta dashboard on mobile showing today's sales and weekly chart" loading="lazy">
         </div>
         <div class="phone-label">
           <strong>Dashboard</strong>
@@ -704,9 +761,9 @@
         </div>
       </div>
 
-      <div class="phone-wrap phone-center">
+      <div class="phone-wrap phone-center reveal">
         <div class="phone-frame">
-          <img src="images/mobile-pos-checkout.jpg" alt="Benta POS checkout on mobile with GCash, Maya, and Cash payment options">
+          <img src="images/mobile-pos-checkout.jpg" alt="Benta POS checkout on mobile with GCash, Maya, and Cash payment options" loading="lazy">
         </div>
         <div class="phone-label">
           <strong>Point of Sale</strong>
@@ -714,9 +771,9 @@
         </div>
       </div>
 
-      <div class="phone-wrap phone-side">
+      <div class="phone-wrap phone-side reveal">
         <div class="phone-frame">
-          <img src="images/mobile-sales-report.jpg" alt="Benta monthly sales report on mobile">
+          <img src="images/mobile-sales-report.jpg" alt="Benta monthly sales report on mobile" loading="lazy">
         </div>
         <div class="phone-label">
           <strong>Sales Reports</strong>
@@ -733,27 +790,27 @@
 </section>
 
 <!-- INCLUDED IN ALL PLANS -->
-<div class="included-bar">
+<div class="included-bar reveal">
   <span>Point of Sale</span>
+  <span>Sales Reports</span>
   <span>Inventory Management</span>
   <span>FIFO Batch Tracking</span>
+  <span>Supplier Management</span>
   <span>Customer Credit (Utang)</span>
-  <span>6 Payment Methods</span>
-  <span>Thermal Printer Support</span>
 </div>
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="pricing-inner">
-    <div class="pricing-header">
+    <div class="pricing-header reveal">
       <div class="section-label">Pricing</div>
       <h2 class="section-title">Simple, transparent pricing</h2>
       <p class="section-sub">Start free. Upgrade when you need more.</p>
       <div class="save-badge">💡 Annual billing saves you 2 months</div>
     </div>
 
-    <div class="pricing-grid">
-      <div class="plan-card">
+    <div class="pricing-grid reveal-stagger">
+      <div class="plan-card reveal">
         <div class="plan-name">Tindahan</div>
         <div class="plan-tagline">For a single store just getting started</div>
         <div class="plan-price"><sup>₱</sup>799<sub>/mo</sub></div>
@@ -774,7 +831,7 @@
         <a href="https://app.bentaph.com" class="plan-btn outline" rel="noopener noreferrer">Try Free for 30 Days</a>
       </div>
 
-      <div class="plan-card featured">
+      <div class="plan-card featured reveal">
         <div class="plan-badge">⭐ Most Popular</div>
         <div class="plan-name">Negosyo</div>
         <div class="plan-tagline">For growing stores that need more visibility</div>
@@ -796,7 +853,7 @@
         <a href="https://app.bentaph.com" class="plan-btn fill" rel="noopener noreferrer">Try Free for 30 Days</a>
       </div>
 
-      <div class="plan-card">
+      <div class="plan-card reveal">
         <div class="plan-name">Kadena</div>
         <div class="plan-tagline">For multi-branch businesses</div>
         <div class="plan-price"><sup>₱</sup>2,999<sub>/mo</sub></div>
@@ -807,8 +864,12 @@
         </div>
         <ul class="plan-features">
           <li>Everything in Negosyo</li>
+          <li>Up to 10 stores</li>
+          <li>25 user accounts</li>
+          <li>Unlimited products</li>
           <li>Automated low-stock email alerts</li>
           <li>Advanced data export (CSV)</li>
+          <li>Priority support</li>
         </ul>
         <a href="https://app.bentaph.com" class="plan-btn outline" rel="noopener noreferrer">Try Free for 30 Days</a>
       </div>
@@ -822,10 +883,10 @@
 
 <!-- FINAL CTA -->
 <section class="cta-section">
-  <h2>Ready to run your store better?</h2>
-  <p>Free for 30 days. No contracts. Cancel anytime.</p>
-  <a href="https://app.bentaph.com" class="btn-white" rel="noopener noreferrer">Get Started for Free →</a>
-  <p class="cta-sub">No credit card or debit card required to sign up</p>
+  <h2 class="reveal">Ready to run your store better?</h2>
+  <p class="reveal" style="transition-delay:0.1s">Free for 30 days. No contracts. Cancel anytime.</p>
+  <a href="https://app.bentaph.com" class="btn-white reveal" style="transition-delay:0.2s" rel="noopener noreferrer">Get Started for Free →</a>
+  <p class="cta-sub reveal" style="transition-delay:0.28s">No credit card or debit card required to sign up</p>
 </section>
 
 </main>
@@ -844,6 +905,18 @@
       if (target) target.scrollIntoView({behavior: 'smooth'});
     });
   });
+
+  // Scroll-reveal via Intersection Observer
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

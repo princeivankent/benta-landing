@@ -10,7 +10,10 @@
       "Bash(git add:*)",
       "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\Dashboard.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-dashboard.jpg\")",
       "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\POS - Checkout.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-pos-checkout.jpg\")",
-      "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\Sales Report.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-sales-report.jpg\")"
+      "Bash(cp \"C:\\\\Users\\\\prince-asus\\\\Downloads\\\\Mobile Screenshots\\\\Sales Report.jpg\" \"C:\\\\Users\\\\prince-asus\\\\Projects\\\\benta-landing\\\\images\\\\mobile-sales-report.jpg\")",
+      "Skill(claude-md-management:revise-claude-md)",
+      "Bash(git -C /c/Users/prince-asus/Projects/benta-landing log --oneline -10)",
+      "Bash(git -C /c/Users/prince-asus/Projects/benta-landing diff HEAD index.html)"
     ]
   }
 }
